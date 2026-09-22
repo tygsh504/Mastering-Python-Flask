@@ -243,6 +243,14 @@ COURSE_SLIDES = [
         "module": "PART 7",
         "title": "Personal Website Demo",
         "images": [
+            "images/deck_7/1.jpg",
+            "images/deck_7/2.jpg",
+            "images/deck_7/3.jpg",
+            "images/deck_7/4.jpg",
+            "images/deck_7/5.jpg",
+            "images/deck_7/6.jpg",
+            "images/deck_7/7.jpg",
+            "images/deck_7/8.jpg"
         ]
     }
 ]
