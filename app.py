@@ -373,7 +373,7 @@ def signup():
                     }
                 }
             })
-            flash("Account created successfully! Please log in.")
+            flash("Account created successfully! Please log in.", "success")
             return redirect(url_for('login'))
         except Exception as e:
             flash(str(e))
@@ -532,7 +532,7 @@ def settings():
             }
             supabase.table('user_profiles').upsert(data).execute()
             
-            flash("Profile updated successfully!")
+            flash("Profile updated successfully!", "success")
             if profile_completed:
                 return redirect(url_for('videos'))
         except Exception as e:
@@ -556,7 +556,7 @@ def update_security():
         
     try:
         supabase.auth.update_user({"password": new_password})
-        flash("Password updated successfully!")
+        flash("Password updated successfully!", "success")
     except Exception as e:
         flash(f"Error updating password: {str(e)}")
         
@@ -574,7 +574,7 @@ def update_email():
     try:
         res = supabase.auth.update_user({"email": new_email})
         session['user'] = res.user.model_dump()
-        flash("Email updated successfully!")
+        flash("Email updated successfully!", "success")
     except Exception as e:
         flash(f"Error updating email: {str(e)}")
         
