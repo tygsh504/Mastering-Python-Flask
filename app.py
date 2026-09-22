@@ -71,8 +71,8 @@ COURSE_VIDEOS = [
         "module": "PART 7",
         "title": "Personal Website Demo",
         "duration": "4:20",
-        "thumbnail": "https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg",
-        "url": "https://www.youtube.com/embed/jNQXAC9IVRw",
+        "thumbnail": "https://img.youtube.com/vi/hfmk0qzlhAM/hqdefault.jpg",
+        "url": "https://www.youtube.com/embed/hfmk0qzlhAM",
         "description": "A demo of the finished personal website."
     }
 ]
