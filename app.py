@@ -81,9 +81,9 @@ COURSE_SLIDES = [
         "module": "PART 1",
         "title": "Introduction",
         "images": [
-            "images/slides/deck_1/page1.png",
-            "images/slides/deck_1/page2.png",
-            "images/slides/deck_1/page3.png"
+            "images/slides/deck_1/page1.jpg",
+            "images/slides/deck_1/page2.jpg",
+            "images/slides/deck_1/page3.jpg"
         ]
     },
     {
@@ -91,9 +91,9 @@ COURSE_SLIDES = [
         "module": "PART 2",
         "title": "Drafting using AI Website Builder",
         "images": [
-            "images/slides/deck_2/page1.png",
-            "images/slides/deck_2/page2.png",
-            "images/slides/deck_2/page3.png"
+            "images/slides/deck_2/page1.jpg",
+            "images/slides/deck_2/page2.jpg",
+            "images/slides/deck_2/page3.jpg"
         ]
     },
     {
@@ -101,9 +101,9 @@ COURSE_SLIDES = [
         "module": "PART 3",
         "title": "Setup of Your PC for Coding",
         "images": [
-            "images/slides/deck_3/page1.png",
-            "images/slides/deck_3/page2.png",
-            "images/slides/deck_3/page3.png"
+            "images/slides/deck_3/page1.jpg",
+            "images/slides/deck_3/page2.jpg",
+            "images/slides/deck_3/page3.jpg"
         ]
     },
     {
@@ -111,9 +111,9 @@ COURSE_SLIDES = [
         "module": "PART 4",
         "title": "Coding using AI",
         "images": [
-            "images/slides/deck_4/page1.png",
-            "images/slides/deck_4/page2.png",
-            "images/slides/deck_4/page3.png"
+            "images/slides/deck_4/page1.jpg",
+            "images/slides/deck_4/page2.jpg",
+            "images/slides/deck_4/page3.jpg"
         ]
     },
     {
@@ -121,9 +121,9 @@ COURSE_SLIDES = [
         "module": "PART 5",
         "title": "Manual Coding for Customization",
         "images": [
-            "images/slides/deck_5/page1.png",
-            "images/slides/deck_5/page2.png",
-            "images/slides/deck_5/page3.png"
+            "images/slides/deck_5/page1.jpg",
+            "images/slides/deck_5/page2.jpg",
+            "images/slides/deck_5/page3.jpg"
         ]
     },
     {
@@ -131,9 +131,9 @@ COURSE_SLIDES = [
         "module": "PART 6",
         "title": "Deployment of Website",
         "images": [
-            "images/slides/deck_6/page1.png",
-            "images/slides/deck_6/page2.png",
-            "images/slides/deck_6/page3.png"
+            "images/slides/deck_6/page1.jpg",
+            "images/slides/deck_6/page2.jpg",
+            "images/slides/deck_6/page3.jpg"
         ]
     },
     {
@@ -141,9 +141,9 @@ COURSE_SLIDES = [
         "module": "PART 7",
         "title": "Personal Website Demo",
         "images": [
-            "images/slides/deck_7/page1.png",
-            "images/slides/deck_7/page2.png",
-            "images/slides/deck_7/page3.png"
+            "images/slides/deck_7/page1.jpg",
+            "images/slides/deck_7/page2.jpg",
+            "images/slides/deck_7/page3.jpg"
         ]
     }
 ]
