@@ -51,8 +51,8 @@ COURSE_VIDEOS = [
         "module": "PART 5",
         "title": "Manual Coding for Customization",
         "duration": "15:30",
-        "thumbnail": "https://img.youtube.com/vi/YQHsXMglC9A/hqdefault.jpg",
-        "url": "https://www.youtube.com/embed/YQHsXMglC9A",
+        "thumbnail": "https://img.youtube.com/vi/J0RYs3CK2Aw/hqdefault.jpg",
+        "url": "https://www.youtube.com/embed/J0RYs3CK2Aw",
         "description": "Fine-tuning your code manually."
     },
     {
@@ -60,8 +60,8 @@ COURSE_VIDEOS = [
         "module": "PART 6",
         "title": "Deployment of Website",
         "duration": "10:00",
-        "thumbnail": "https://img.youtube.com/vi/KpA0YqkLTJg/hqdefault.jpg",
-        "url": "https://www.youtube.com/embed/KpA0YqkLTJg",
+        "thumbnail": "https://img.youtube.com/vi/w_Y4XLZI9a4/hqdefault.jpg",
+        "url": "https://www.youtube.com/embed/w_Y4XLZI9a4",
         "description": "Deploy your website to the internet."
     },
     {
