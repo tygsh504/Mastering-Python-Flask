@@ -1,6 +1,8 @@
 import os
+import io
+from PIL import Image
 from functools import wraps
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, send_file
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
@@ -443,6 +445,45 @@ def slides(slide_id):
                            current_index=current_index,
                            prev_slide=prev_slide,
                            next_slide=next_slide)
+
+@app.route('/slides/<slide_id>/download')
+@profile_required
+def download_deck(slide_id):
+    current_slide = next((s for s in COURSE_SLIDES if s['id'] == slide_id), None)
+    if not current_slide or not current_slide.get('images'):
+        flash("No images available for this deck.")
+        return redirect(url_for('slides', slide_id=slide_id))
+    
+    image_paths = current_slide['images']
+    pil_images = []
+    
+    for img_path in image_paths:
+        abs_path = os.path.join(app.root_path, 'static', img_path)
+        if os.path.exists(abs_path):
+            img = Image.open(abs_path)
+            # Convert to RGB to avoid issues with transparency when saving as PDF
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            pil_images.append(img)
+            
+    if not pil_images:
+        flash("Could not generate PDF (images not found).")
+        return redirect(url_for('slides', slide_id=slide_id))
+        
+    pdf_bytes = io.BytesIO()
+    
+    if len(pil_images) == 1:
+        pil_images[0].save(pdf_bytes, format='PDF', resolution=100.0)
+    else:
+        pil_images[0].save(pdf_bytes, format='PDF', resolution=100.0, save_all=True, append_images=pil_images[1:])
+        
+    pdf_bytes.seek(0)
+    return send_file(
+        pdf_bytes,
+        download_name=f"{current_slide['title'].replace(' ', '_')}.pdf",
+        as_attachment=True,
+        mimetype='application/pdf'
+    )
 
 @app.route('/worksheet')
 @profile_required
