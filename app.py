@@ -81,9 +81,17 @@ COURSE_SLIDES = [
         "module": "PART 1",
         "title": "Introduction",
         "images": [
-            "images/slides/deck_1/page1.jpg",
-            "images/slides/deck_1/page2.jpg",
-            "images/slides/deck_1/page3.jpg"
+            "images/deck_1/1.jpg",
+            "images/deck_1/2.jpg",
+            "images/deck_1/3.jpg",
+            "images/deck_1/4.jpg",
+            "images/deck_1/5.jpg",
+            "images/deck_1/6.jpg",
+            "images/deck_1/7.jpg",
+            "images/deck_1/8.jpg",
+            "images/deck_1/9.jpg",
+            "images/deck_1/10.jpg",
+            "images/deck_1/11.jpg"
         ]
     },
     {
@@ -91,9 +99,18 @@ COURSE_SLIDES = [
         "module": "PART 2",
         "title": "Drafting using AI Website Builder",
         "images": [
-            "images/slides/deck_2/page1.jpg",
-            "images/slides/deck_2/page2.jpg",
-            "images/slides/deck_2/page3.jpg"
+            "images/deck_2/1.jpg",
+            "images/deck_2/2.jpg",
+            "images/deck_2/3.jpg",
+            "images/deck_2/4.jpg",
+            "images/deck_2/5.jpg",
+            "images/deck_2/6.jpg",
+            "images/deck_2/7.jpg",
+            "images/deck_2/8.jpg",
+            "images/deck_2/9.jpg",
+            "images/deck_2/10.jpg",
+            "images/deck_2/11.jpg",
+            "images/deck_2/12.jpg"
         ]
     },
     {
@@ -101,9 +118,14 @@ COURSE_SLIDES = [
         "module": "PART 3",
         "title": "Setup of Your PC for Coding",
         "images": [
-            "images/slides/deck_3/page1.jpg",
-            "images/slides/deck_3/page2.jpg",
-            "images/slides/deck_3/page3.jpg"
+            "images/deck_3/1.jpg",
+            "images/deck_3/2.jpg",
+            "images/deck_3/3.jpg",
+            "images/deck_3/4.jpg",
+            "images/deck_3/5.jpg",
+            "images/deck_3/6.jpg",
+            "images/deck_3/7.jpg",
+            "images/deck_3/8.jpg"
         ]
     },
     {
@@ -111,9 +133,35 @@ COURSE_SLIDES = [
         "module": "PART 4",
         "title": "Coding using AI",
         "images": [
-            "images/slides/deck_4/page1.jpg",
-            "images/slides/deck_4/page2.jpg",
-            "images/slides/deck_4/page3.jpg"
+            "images/deck_4/1.jpg",
+            "images/deck_4/2.jpg",
+            "images/deck_4/3.jpg",
+            "images/deck_4/4.jpg",
+            "images/deck_4/5.jpg",
+            "images/deck_4/6.jpg",
+            "images/deck_4/7.jpg",
+            "images/deck_4/8.jpg",
+            "images/deck_4/9.jpg",
+            "images/deck_4/10.jpg",
+            "images/deck_4/11.jpg",
+            "images/deck_4/12.jpg",
+            "images/deck_4/13.jpg",
+            "images/deck_4/14.jpg",
+            "images/deck_4/15.jpg",
+            "images/deck_4/16.jpg",
+            "images/deck_4/17.jpg",
+            "images/deck_4/18.jpg",
+            "images/deck_4/19.jpg",
+            "images/deck_4/20.jpg",
+            "images/deck_4/21.jpg",
+            "images/deck_4/22.jpg",
+            "images/deck_4/23.jpg",
+            "images/deck_4/24.jpg",
+            "images/deck_4/25.jpg",
+            "images/deck_4/26.jpg",
+            "images/deck_4/27.jpg",
+            "images/deck_4/28.jpg",
+            "images/deck_4/29.jpg"
         ]
     },
     {
@@ -121,9 +169,41 @@ COURSE_SLIDES = [
         "module": "PART 5",
         "title": "Manual Coding for Customization",
         "images": [
-            "images/slides/deck_5/page1.jpg",
-            "images/slides/deck_5/page2.jpg",
-            "images/slides/deck_5/page3.jpg"
+            "images/deck_5/1.jpg",
+            "images/deck_5/2.jpg",
+            "images/deck_5/3.jpg",
+            "images/deck_5/4.jpg",
+            "images/deck_5/5.jpg",
+            "images/deck_5/6.jpg",
+            "images/deck_5/7.jpg",
+            "images/deck_5/8.jpg",
+            "images/deck_5/9.jpg",
+            "images/deck_5/10.jpg",
+            "images/deck_5/11.jpg",
+            "images/deck_5/12.jpg",
+            "images/deck_5/13.jpg",
+            "images/deck_5/14.jpg",
+            "images/deck_5/15.jpg",
+            "images/deck_5/16.jpg",
+            "images/deck_5/17.jpg",
+            "images/deck_5/18.jpg",
+            "images/deck_5/19.jpg",
+            "images/deck_5/20.jpg",
+            "images/deck_5/21.jpg",
+            "images/deck_5/22.jpg",
+            "images/deck_5/23.jpg",
+            "images/deck_5/24.jpg",
+            "images/deck_5/25.jpg",
+            "images/deck_5/26.jpg",
+            "images/deck_5/27.jpg",
+            "images/deck_5/28.jpg",
+            "images/deck_5/29.jpg",
+            "images/deck_5/30.jpg",
+            "images/deck_5/31.jpg",
+            "images/deck_5/32.jpg",
+            "images/deck_5/33.jpg",
+            "images/deck_5/34.jpg",
+            "images/deck_5/35.jpg"
         ]
     },
     {
@@ -131,9 +211,29 @@ COURSE_SLIDES = [
         "module": "PART 6",
         "title": "Deployment of Website",
         "images": [
-            "images/slides/deck_6/page1.jpg",
-            "images/slides/deck_6/page2.jpg",
-            "images/slides/deck_6/page3.jpg"
+            "images/deck_6/1.jpg",
+            "images/deck_6/2.jpg",
+            "images/deck_6/3.jpg",
+            "images/deck_6/4.jpg",
+            "images/deck_6/5.jpg",
+            "images/deck_6/6.jpg",
+            "images/deck_6/7.jpg",
+            "images/deck_6/8.jpg",
+            "images/deck_6/9.jpg",
+            "images/deck_6/10.jpg",
+            "images/deck_6/11.jpg",
+            "images/deck_6/12.jpg",
+            "images/deck_6/13.jpg",
+            "images/deck_6/14.jpg",
+            "images/deck_6/15.jpg",
+            "images/deck_6/16.jpg",
+            "images/deck_6/17.jpg",
+            "images/deck_6/18.jpg",
+            "images/deck_6/19.jpg",
+            "images/deck_6/20.jpg",
+            "images/deck_6/21.jpg",
+            "images/deck_6/22.jpg",
+            "images/deck_6/23.jpg"
         ]
     },
     {
@@ -141,9 +241,6 @@ COURSE_SLIDES = [
         "module": "PART 7",
         "title": "Personal Website Demo",
         "images": [
-            "images/slides/deck_7/page1.jpg",
-            "images/slides/deck_7/page2.jpg",
-            "images/slides/deck_7/page3.jpg"
         ]
     }
 ]
