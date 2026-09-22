@@ -80,43 +80,71 @@ COURSE_SLIDES = [
         "id": "slide_1",
         "module": "PART 1",
         "title": "Introduction",
-        "content": ["Welcome to the course.", "Overview of what we'll cover."]
+        "images": [
+            "images/slides/deck_1/page1.png",
+            "images/slides/deck_1/page2.png",
+            "images/slides/deck_1/page3.png"
+        ]
     },
     {
         "id": "slide_2",
         "module": "PART 2",
         "title": "Drafting using AI Website Builder",
-        "content": ["Prompt engineering basics.", "Drafting layouts with AI tools."]
+        "images": [
+            "images/slides/deck_2/page1.png",
+            "images/slides/deck_2/page2.png",
+            "images/slides/deck_2/page3.png"
+        ]
     },
     {
         "id": "slide_3",
         "module": "PART 3",
         "title": "Setup of Your PC for Coding",
-        "content": ["Install a code editor.", "Set up your environment."]
+        "images": [
+            "images/slides/deck_3/page1.png",
+            "images/slides/deck_3/page2.png",
+            "images/slides/deck_3/page3.png"
+        ]
     },
     {
         "id": "slide_4",
         "module": "PART 4",
         "title": "Coding using AI",
-        "content": ["Generating HTML and CSS.", "Iterating on code with AI."]
+        "images": [
+            "images/slides/deck_4/page1.png",
+            "images/slides/deck_4/page2.png",
+            "images/slides/deck_4/page3.png"
+        ]
     },
     {
         "id": "slide_5",
         "module": "PART 5",
         "title": "Manual Coding for Customization",
-        "content": ["Refining AI generated code.", "Adding custom styles and logic."]
+        "images": [
+            "images/slides/deck_5/page1.png",
+            "images/slides/deck_5/page2.png",
+            "images/slides/deck_5/page3.png"
+        ]
     },
     {
         "id": "slide_6",
         "module": "PART 6",
         "title": "Deployment of Website",
-        "content": ["Hosting options.", "Deploying your site."]
+        "images": [
+            "images/slides/deck_6/page1.png",
+            "images/slides/deck_6/page2.png",
+            "images/slides/deck_6/page3.png"
+        ]
     },
     {
         "id": "slide_7",
         "module": "PART 7",
         "title": "Personal Website Demo",
-        "content": ["Reviewing the final product.", "Next steps."]
+        "images": [
+            "images/slides/deck_7/page1.png",
+            "images/slides/deck_7/page2.png",
+            "images/slides/deck_7/page3.png"
+        ]
     }
 ]
 
