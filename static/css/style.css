@@ -206,11 +206,13 @@ footer {
 }
 
 .flash {
-  background-color: #ffeb3b;
-  color: #333;
+  background-color: #d1fae5;
+  color: #065f46;
   padding: 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 1rem;
+  border: 1px solid #6ee7b7;
+  font-weight: 500;
 }
 
 /* Utilities */
