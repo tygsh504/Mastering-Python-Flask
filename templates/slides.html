@@ -225,6 +225,31 @@ document.addEventListener("DOMContentLoaded", function() {
             updateSlide();
         }
     });
+
+    // Click on slide to navigate (especially useful for fullscreen)
+    if (slideContainer) {
+        slideContainer.style.cursor = 'pointer';
+        slideContainer.addEventListener('click', (e) => {
+            // Ignore if clicked on maximize button
+            if (e.target.closest('#maximize-btn')) return;
+            
+            // Get click position relative to the container width
+            const rect = slideContainer.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            
+            if (clickX > rect.width / 2) {
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                    updateSlide();
+                }
+            } else {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlide();
+                }
+            }
+        });
+    }
 });
 </script>
 {% endblock %}
