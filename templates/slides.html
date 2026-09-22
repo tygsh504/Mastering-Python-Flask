@@ -24,19 +24,19 @@
             <div style="padding: 4rem 3rem; min-height: 400px; position: relative;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
                     <span style="background-color: #e5f6fd; color: #0288d1; padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px;">{{ current_slide.module }}</span>
-                    <span style="color: #888; font-size: 0.9rem;">{{ current_index + 1 }} / {{ course_slides|length }}</span>
+                    <span id="slide-counter" style="color: #888; font-size: 0.9rem;">1 / {{ current_slide.images|length if current_slide.images else 0 }}</span>
                 </div>
                 
                 <div style="font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 1rem; font-weight: 600;">{{ current_slide.module }}</div>
                 <h2 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 2rem; color: #333;">{{ current_slide.title }}</h2>
                 
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-height: 60vh; overflow-y: auto; padding-right: 1rem;">
+                <div id="slide-container" style="display: flex; justify-content: center; align-items: center; min-height: 400px; padding: 1rem;">
                     {% if current_slide.images %}
                         {% for img_path in current_slide.images %}
-                            <img src="{{ url_for('static', filename=img_path) }}" alt="Slide page" style="width: 100%; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <img class="slide-image" src="{{ url_for('static', filename=img_path) }}" alt="Slide page {{ loop.index }}" style="width: 100%; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); {{ 'display: block;' if loop.first else 'display: none;' }}">
                         {% endfor %}
                     {% else %}
-                        <div style="text-align: center; padding: 3rem; color: #888; background: #f9f9f9; border-radius: 8px; border: 1px dashed #ccc;">
+                        <div style="text-align: center; padding: 3rem; color: #888; background: #f9f9f9; border-radius: 8px; border: 1px dashed #ccc; width: 100%;">
                             No images uploaded for this deck yet.
                         </div>
                     {% endif %}
@@ -45,26 +45,20 @@
             
             <!-- Slide Controls -->
             <div style="padding: 1rem 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: #fafafa;">
-                {% if prev_slide %}
-                <a href="{{ url_for('slides', slide_id=prev_slide.id) }}" style="border: none; background: none; color: #666; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; text-decoration: none;">
+                <button id="prev-btn" style="border: none; background: none; color: #666; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; opacity: 0.5; pointer-events: none;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg> Previous
-                </a>
-                {% else %}
-                <span style="width: 100px;"></span>
-                {% endif %}
+                </button>
                 
                 <!-- Dots -->
-                <div style="display: flex; gap: 8px;">
-                    {% for slide in course_slides %}
-                    <div style="width: 8px; height: 8px; border-radius: 50%; background-color: {{ 'var(--primary-color)' if loop.index0 == current_index else '#ddd' }};"></div>
-                    {% endfor %}
+                <div id="slide-dots" style="display: flex; gap: 8px;">
+                    {% if current_slide.images %}
+                        {% for img in current_slide.images %}
+                        <div class="slide-dot" style="width: 8px; height: 8px; border-radius: 50%; background-color: {{ 'var(--primary-color)' if loop.first else '#ddd' }}; transition: background-color 0.2s;"></div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 
-                {% if next_slide %}
-                <a href="{{ url_for('slides', slide_id=next_slide.id) }}" class="btn-primary" style="padding: 0.5rem 1.5rem; text-decoration: none; border-radius: 4px;">Next &rarr;</a>
-                {% else %}
-                <span style="width: 100px;"></span>
-                {% endif %}
+                <button id="next-btn" class="btn-primary" style="padding: 0.5rem 1.5rem; border: none; font-weight: 500; border-radius: 4px; cursor: pointer; {{ 'opacity: 0.5; pointer-events: none;' if not current_slide.images or current_slide.images|length <= 1 else '' }}">Next &rarr;</button>
             </div>
         </div>
 
@@ -92,4 +86,71 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('.slide-image');
+    const dots = document.querySelectorAll('.slide-dot');
+    const counter = document.getElementById('slide-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    if (images.length === 0) return;
+
+    let currentIndex = 0;
+    const totalImages = images.length;
+
+    function updateSlide() {
+        // Update images
+        images.forEach((img, idx) => {
+            img.style.display = (idx === currentIndex) ? 'block' : 'none';
+        });
+        
+        // Update dots
+        dots.forEach((dot, idx) => {
+            dot.style.backgroundColor = (idx === currentIndex) ? 'var(--primary-color)' : '#ddd';
+        });
+        
+        // Update counter
+        if(counter) {
+            counter.innerText = `${currentIndex + 1} / ${totalImages}`;
+        }
+        
+        // Update buttons
+        if (currentIndex === 0) {
+            prevBtn.style.opacity = '0.5';
+            prevBtn.style.pointerEvents = 'none';
+        } else {
+            prevBtn.style.opacity = '1';
+            prevBtn.style.pointerEvents = 'auto';
+        }
+        
+        if (currentIndex === totalImages - 1) {
+            nextBtn.style.opacity = '0.5';
+            nextBtn.style.pointerEvents = 'none';
+        } else {
+            nextBtn.style.opacity = '1';
+            nextBtn.style.pointerEvents = 'auto';
+        }
+    }
+
+    if(prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlide();
+            }
+        });
+    }
+
+    if(nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < totalImages - 1) {
+                currentIndex++;
+                updateSlide();
+            }
+        });
+    }
+});
+</script>
 {% endblock %}
