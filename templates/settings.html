@@ -92,23 +92,18 @@
                     <p style="color: #666; font-size: 0.95rem;">Change the password you use to log in.</p>
                 </div>
                 
-                <form>
-                    <div style="margin-bottom: 1.5rem; max-width: 400px;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Current password</label>
-                        <input type="password" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
-                    </div>
-                    
+                <form method="POST" action="{{ url_for('update_security') }}">
                     <div style="margin-bottom: 1.5rem; max-width: 400px;">
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">New password</label>
-                        <input type="password" placeholder="At least 6 characters" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                        <input type="password" name="new_password" placeholder="At least 6 characters" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
                     </div>
                     
                     <div style="margin-bottom: 2rem; max-width: 400px;">
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Confirm new password</label>
-                        <input type="password" placeholder="Repeat your new password" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                        <input type="password" name="confirm_password" placeholder="Repeat your new password" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
                     </div>
                     
-                    <button type="button" class="btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">Update password</button>
+                    <button type="submit" class="btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">Update password</button>
                 </form>
             </div>
             
@@ -119,7 +114,7 @@
                     <p style="color: #666; font-size: 0.95rem;">Update the email tied to your account.</p>
                 </div>
                 
-                <form>
+                <form method="POST" action="{{ url_for('update_email') }}">
                     <div style="margin-bottom: 1.5rem; max-width: 400px;">
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Current email</label>
                         <input type="email" value="{{ user.email if user else 'your@university.edu' }}" disabled style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; background-color: #f9f9f9; color: #888;">
@@ -127,10 +122,10 @@
                     
                     <div style="margin-bottom: 2rem; max-width: 400px;">
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">New email address</label>
-                        <input type="email" placeholder="new-address@university.edu" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                        <input type="email" name="new_email" placeholder="new-address@university.edu" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
                     </div>
                     
-                    <button type="button" class="btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">Update email</button>
+                    <button type="submit" class="btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">Update email</button>
                 </form>
             </div>
             

@@ -540,6 +540,45 @@ def settings():
             
     return render_template('settings.html')
 
+@app.route('/settings/security', methods=['POST'])
+@login_required
+def update_security():
+    if not supabase:
+        flash("Supabase not configured.")
+        return redirect(url_for('settings'))
+    
+    new_password = request.form.get('new_password')
+    confirm_password = request.form.get('confirm_password')
+    
+    if new_password != confirm_password:
+        flash("New passwords do not match.")
+        return redirect(url_for('settings') + "#security")
+        
+    try:
+        supabase.auth.update_user({"password": new_password})
+        flash("Password updated successfully!")
+    except Exception as e:
+        flash(f"Error updating password: {str(e)}")
+        
+    return redirect(url_for('settings') + "#security")
+
+@app.route('/settings/email', methods=['POST'])
+@login_required
+def update_email():
+    if not supabase:
+        flash("Supabase not configured.")
+        return redirect(url_for('settings'))
+        
+    new_email = request.form.get('new_email')
+    
+    try:
+        res = supabase.auth.update_user({"email": new_email})
+        session['user'] = res.user.model_dump()
+        flash("Email updated successfully!")
+    except Exception as e:
+        flash(f"Error updating email: {str(e)}")
+        
+    return redirect(url_for('settings') + "#email")
 @app.route('/api/complete_video', methods=['POST'])
 @login_required
 def complete_video():
