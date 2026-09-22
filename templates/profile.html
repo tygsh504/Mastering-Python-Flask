@@ -93,11 +93,25 @@
                 <a href="{{ url_for('worksheet') }}" style="color: #666; font-size: 0.9rem;">Open worksheet</a>
             </div>
             
-            <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 3rem 2rem; text-align: center; margin-bottom: 3rem;">
-                <h3 style="margin-bottom: 0.5rem;">Nothing here yet</h3>
-                <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">Fill in the planning worksheet and your saved versions will show up here.</p>
-                <a href="{{ url_for('worksheet') }}" style="color: var(--primary-color); font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Start a worksheet</a>
-            </div>
+            {% if worksheets and worksheets|length > 0 %}
+                <div style="display: grid; gap: 1rem; margin-bottom: 3rem;">
+                {% for sheet in worksheets %}
+                    <a href="{{ url_for('worksheet') }}?id={{ sheet.id }}" style="display: block; background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; text-decoration: none; color: inherit; transition: box-shadow 0.2s;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                            <h3 style="font-size: 1.1rem; color: var(--text-light); margin: 0;">{{ sheet.purpose[:50] + '...' if sheet.purpose and sheet.purpose|length > 50 else (sheet.purpose or 'Untitled Worksheet') }}</h3>
+                            <span style="font-size: 0.8rem; color: #888; background: #f5f5f5; padding: 2px 8px; border-radius: 12px;">{{ sheet.created_at[:10] }}</span>
+                        </div>
+                        <p style="color: #666; font-size: 0.9rem; margin: 0; line-height: 1.4;">{{ sheet.mission[:100] + '...' if sheet.mission and sheet.mission|length > 100 else (sheet.mission or 'No mission defined') }}</p>
+                    </a>
+                {% endfor %}
+                </div>
+            {% else %}
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 3rem 2rem; text-align: center; margin-bottom: 3rem;">
+                    <h3 style="margin-bottom: 0.5rem;">Nothing here yet</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">Fill in the planning worksheet and your saved versions will show up here.</p>
+                    <a href="{{ url_for('worksheet') }}" style="color: var(--primary-color); font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Start a worksheet</a>
+                </div>
+            {% endif %}
             
             <div style="margin-bottom: 1.5rem;">
                 <h2 style="font-size: 1.5rem; margin: 0;">Keep going</h2>

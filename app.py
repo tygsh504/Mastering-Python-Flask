@@ -327,7 +327,17 @@ def worksheet():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html')
+    user_id = session['user']['id']
+    worksheets = []
+    if supabase:
+        try:
+            res = supabase.table('worksheets').select('*').eq('user_id', user_id).order('created_at', desc=True).limit(3).execute()
+            if res.data:
+                worksheets = res.data
+        except Exception as e:
+            print(f"Error fetching worksheets for profile: {e}")
+            
+    return render_template('profile.html', worksheets=worksheets)
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
