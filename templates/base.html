@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python Flask</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="{{ url_for('index') }}" class="logo" style="text-decoration: none;">
+                <span
+                    style="background-color: #f04e4e; color: white; padding: 6px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; width: 32px; height: 32px;">&lt;/&gt;</span>
+                <div style="display: flex; flex-direction: column; line-height: 1;">
+                    <span style="font-weight: 700; color: white; font-size: 1.1rem;">Mastering</span>
+                    <span style="font-weight: 400; color: #a0a0a0; font-size: 0.75rem;">Python Flask</span>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('videos') }}">Videos</a>
+                <a href="{{ url_for('slides') }}">Slides</a>
+                <div style="position: relative; display: flex; align-items: center;">
+                    <div id="worksheet-dropdown-btn" style="cursor: pointer; display: flex; align-items: center; gap: 0.3rem; color: white; opacity: 0.8; font-weight: 500;">
+                        Worksheet
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: white;">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="worksheet-dropdown" style="display: none; position: absolute; left: 0; top: 150%; background: white; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 20;">
+                        <a href="{{ url_for('worksheet') }}" style="display: block; padding: 10px 15px; border-bottom: 1px solid #eee; color: #333; opacity: 1;">New Worksheet</a>
+                        <a href="{{ url_for('worksheet_history') }}" style="display: block; padding: 10px 15px; color: #333; opacity: 1;">History</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="nav-center">
+            <input type="text" class="search-bar" placeholder="Search tutorials, topics...">
+        </div>
+
+        <div class="nav-right">
+            <a href="#" style="opacity: 0.8; font-size: 0.95rem; margin-right: 1rem;">Contact us</a>
+
+            {% if user %}
+            <div style="position: relative;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;" id="avatar-btn">
+                    <div class="user-avatar"
+                        style="background-color: #f04e4e; width: 32px; height: 32px; font-size: 0.85rem;">
+                        {{ user.user_metadata.full_name[:2].upper() if user.user_metadata and
+                        user.user_metadata.full_name else 'TY' }}
+                    </div>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="color: white; opacity: 0.8;">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div id="user-dropdown"
+                    style="display: none; position: absolute; right: 0; top: 120%; background: white; color: black; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 150px; z-index: 10;">
+                    <a href="{{ url_for('profile') }}"
+                        style="display: block; padding: 10px; border-bottom: 1px solid #eee;">Profile</a>
+                    <a href="{{ url_for('settings') }}"
+                        style="display: block; padding: 10px; border-bottom: 1px solid #eee;">Account settings</a>
+                    <a href="{{ url_for('logout') }}" style="display: block; padding: 10px; color: #d95e29;">Log out</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="btn-outline" style="border: none;">Login</a>
+            <a href="{{ url_for('signup') }}" class="btn-primary">Sign up</a>
+            {% endif %}
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li class="flash">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-col" style="min-width: 250px;">
+            <div class="logo" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span
+                    style="background-color: #f04e4e; color: white; padding: 6px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; width: 32px; height: 32px;">&lt;/&gt;</span>
+                <div style="display: flex; flex-direction: column; line-height: 1;">
+                    <span style="font-weight: 700; color: white; font-size: 1.1rem;">Mastering</span>
+                    <span style="font-weight: 400; color: #a0a0a0; font-size: 0.75rem;">Python Flask</span>
+                </div>
+            </div>
+            <p style="opacity: 0.7; font-size: 0.9rem; line-height: 1.6;">
+                A practical, no-jargon tutorial that helps<br>
+                university students go from zero to a working<br>
+                Python Flask web app.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 style="color: var(--primary-color); font-weight: bold;">Contact Us</h4>
+            <ul>
+                <li style="color: white; font-weight: bold; margin-bottom: 0.5rem; opacity: 1;">Tong Yong Shen</li>
+                <li style="display: flex; gap: 0.5rem; align-items: center; opacity: 0.8; font-size: 0.95rem;">
+                    <span>📞</span> +60 11 2048 5425
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: center; opacity: 0.8; font-size: 0.95rem;">
+                    <span>📧</span> tygsh504@gmail.com
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: center; opacity: 0.8; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                    <span>🎓</span> 2200458@siswa.um.edu.my
+                </li>
+
+                <li style="color: white; font-weight: bold; margin-bottom: 0.5rem; opacity: 1;">Associate Prof. Ir. Dr. Norrima binti Mokhtar</li>
+                <li style="display: flex; gap: 0.5rem; align-items: center; opacity: 0.8; font-size: 0.95rem;">
+                    <span>📞</span> +60 10 245 5060
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: center; opacity: 0.8; font-size: 0.95rem;">
+                    <span>📧</span> norrimamokhtar@um.edu.my
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 style="color: var(--primary-color); font-weight: bold;">Navigation</h4>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('videos') }}">Videos</a></li>
+                <li><a href="{{ url_for('slides') }}">Slides</a></li>
+                <li><a href="{{ url_for('worksheet') }}">Worksheet</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign-up</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 style="color: var(--primary-color); font-weight: bold;">Location</h4>
+            <ul>
+                <li style="color: white; font-weight: bold; margin-bottom: 0.5rem; opacity: 1;">ACRLAB</li>
+                <li style="opacity: 0.8; font-size: 0.95rem; margin-bottom: 0.2rem;">Department of Electrical Engineering</li>
+                <li style="opacity: 0.8; font-size: 0.95rem; margin-bottom: 0.2rem;">Universiti Malaya</li>
+                <li style="opacity: 0.8; font-size: 0.95rem; margin-bottom: 0.2rem;">50603 Lembah Pantai</li>
+                <li style="opacity: 0.8; font-size: 0.95rem;">Kuala Lumpur, Malaysia</li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2026 Mastering Python Flask. Built for students, by students.</div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

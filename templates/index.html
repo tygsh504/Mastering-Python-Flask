@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero"
+    style="background-color: #0d0d0d; background-image: radial-gradient(circle at 85% 50%, #4a3e21 0%, #1c1d1a 30%, #0d0d0d 60%), radial-gradient(circle at 95% 80%, #3e4a21 0%, transparent 40%); color: white; padding: 2rem; text-align: center; position: relative; overflow: hidden; border-bottom: 1px solid #222; min-height: calc(100vh - 76px); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <!-- Abstract background shape approximation -->
+    <div
+        style="position: absolute; right: -5%; top: 0; width: 40%; height: 100%; background: linear-gradient(135deg, #a87b32 0%, #475a28 50%, #151a10 100%); opacity: 0.4; filter: blur(40px); border-radius: 50% 0 0 50%; z-index: 0; pointer-events: none;">
+    </div>
+
+    <div style="position: relative; z-index: 1;">
+        <div
+            style="background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: inline-block; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 2rem; color: #ddd; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" style="color: #f04e4e;">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+            </svg> Built for university students with zero coding background
+        </div>
+
+        <h1
+            style="font-size: 3.8rem; line-height: 1.1; margin-bottom: 1.5rem; max-width: 950px; margin-left: auto; margin-right: auto; font-weight: 700; letter-spacing: -1px;">
+            Understand how websites work<br>— then build one with <span style="color: #f04e4e;">Python<br>Flask</span>
+        </h1>
+
+        <p style="font-size: 1.1rem; max-width: 650px; margin: 0 auto 2.5rem; color: #aaa; line-height: 1.6;">
+            A short, practical tutorial that takes you from "I don't know what a server is" to a running web app you
+            actually understand. Plan with AI, code with Flask, ship with confidence.
+        </p>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 5rem;">
+            <a href="{{ url_for('worksheet') }}"
+                style="background-color: #f04e4e; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 6px; font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; transition: background-color 0.2s;">
+                Start the planning worksheet &rarr;
+            </a>
+            <a href="{{ url_for('videos') }}"
+                style="background-color: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 1.5rem; border-radius: 6px; font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; transition: background-color 0.2s;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                </svg>
+                Watch the lessons
+            </a>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 5rem; text-transform: uppercase;">
+            <div>
+                <div style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; color: white;">7</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; color: #888; font-weight: 600;">GUIDED MODULES
+                </div>
+            </div>
+            <div>
+                <div style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; color: white;">7</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; color: #888; font-weight: 600;">SHORT VIDEO LESSONS
+                </div>
+            </div>
+            <div>
+                <div style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; color: white;">100%</div>
+                <div style="font-size: 0.75rem; letter-spacing: 1px; color: #888; font-weight: 600;">FREE TO FOLLOW
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="padding: 6rem 2rem;">
+    <div
+        style="font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 1rem; font-weight: 600;">
+        WHAT YOU WILL LEARN</div>
+    <h2 style="font-size: 2.5rem; max-width: 600px; line-height: 1.2; margin-bottom: 1.5rem;">Six skills that turn an
+        idea into a working website</h2>
+    <p style="color: #666; margin-bottom: 4rem; max-width: 600px;">Every module is short and hands-on. You will always
+        know why you are doing something before you type a single line.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+        <!-- Card 1 -->
+        <div>
+            <div
+                style="width: 40px; height: 40px; background-color: #fcece6; color: var(--primary-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">How a website really works</h3>
+            <p style="color: #666; line-height: 1.6;">Front end, back end, servers, requests and responses - explained
+                with everyday analogies, no jargon.</p>
+        </div>
+        <!-- Card 2 -->
+        <div>
+            <div
+                style="width: 40px; height: 40px; background-color: #fcece6; color: var(--primary-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Using AI builders the smart way</h3>
+            <p style="color: #666; line-height: 1.6;">Learn what an AI website builder can and cannot do, and how to
+                steer it with a clear, well-structured prompt.</p>
+        </div>
+        <!-- Card 3 -->
+        <div>
+            <div
+                style="width: 40px; height: 40px; background-color: #fcece6; color: var(--primary-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Planning before building</h3>
+            <p style="color: #666; line-height: 1.6;">Turn a vague idea into purpose, target user, mission and a scoped
+                feature list you can actually finish.</p>
+        </div>
+        <!-- Card 4 -->
+        <div>
+            <div
+                style="width: 40px; height: 40px; background-color: #fcece6; color: var(--primary-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Python Flask fundamentals</h3>
+            <p style="color: #666; line-height: 1.6;">Routes, templates, forms, request handling and a first database -
+                written line by line with you.</p>
+        </div>
+        <!-- Card 5 -->
+        <div>
+            <div
+                style="width: 40px; height: 40px; background-color: #fcece6; color: var(--primary-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Templates & styling</h3>
+            <p style="color: #666; line-height: 1.6;">Make your app look intentional with Jinja templates and a simple,
+                readable stylesheet approach.</p>
+        </div>
+        <!-- Card 6 -->
+        <div>
+            <div
+                style="width: 40px; height: 40px; background-color: #fcece6; color: var(--primary-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                    </path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem;">Shipping your first app</h3>
+            <p style="color: #666; line-height: 1.6;">Run it locally, fix errors you will hit, and understand how to put
+                it online for others to use.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="padding: 4rem 2rem;">
+    <div
+        style="font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 1rem; font-weight: 600; text-align: center;">
+        YOUR TOOLKIT</div>
+    <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem;">Three resources that do the heavy lifting
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <!-- Toolkit 1 -->
+        <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+            <div
+                style="height: 180px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+            </div>
+            <div style="padding: 2rem;">
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg> Videos
+                </div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Pick a tutorial and follow along</h3>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem;">Short screen-recorded lessons grouped
+                    by module. Watch in order or jump to the part you need right now.</p>
+                <a href="{{ url_for('videos') }}" style="color: var(--primary-color); font-weight: 500;">Browse lessons
+                    &rarr;</a>
+            </div>
+        </div>
+        <!-- Toolkit 2 -->
+        <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+            <div
+                style="height: 180px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+            </div>
+            <div style="padding: 2rem;">
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg> Slides
+                </div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">View or download the PDF decks</h3>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem;">Every module has a slide deck you can
+                    read online, download, and bring to study sessions.</p>
+                <a href="{{ url_for('slides') }}" style="color: var(--primary-color); font-weight: 500;">Open slide
+                    library &rarr;</a>
+            </div>
+        </div>
+        <!-- Toolkit 3 -->
+        <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+            <div
+                style="height: 180px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+            </div>
+            <div style="padding: 2rem;">
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg> Worksheet
+                </div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Turn your idea into a clear prompt</h3>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem;">Answer six planning questions and get
+                    an AI-ready prompt template for your own website project.</p>
+                <a href="{{ url_for('worksheet') }}" style="color: var(--primary-color); font-weight: 500;">Start the
+                    worksheet &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: var(--bg-card); padding: 6rem 2rem;">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 4rem;">
+        <div style="flex: 1; min-width: 300px;">
+            <div
+                style="font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 1rem; font-weight: 600;">
+                WHO THIS IS FOR</div>
+            <h2 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 1.5rem;">Made for people who are smart, but
+                new to code</h2>
+            <p style="color: #666; margin-bottom: 2rem;">This tutorial assumes you can think clearly and follow
+                instructions — not that you have ever written a function before.</p>
+            <ul style="list-style: none; color: #555;">
+                <li style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;"><svg width="20"
+                        height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> No prior programming experience required</li>
+                <li style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;"><svg width="20"
+                        height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Written in plain language, not developer speak</li>
+                <li style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;"><svg width="20"
+                        height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Every lesson ends with something that runs</li>
+                <li style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;"><svg width="20"
+                        height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Works alongside free tools you already have</li>
+            </ul>
+        </div>
+        <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 2rem;">
+            <div style="background: white; padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="color: #f7a072;">🎓</span> Bachelor's students, any major
+                </h4>
+                <p style="color: #666; font-size: 0.95rem;">You are comfortable with your own field and using software —
+                    you just have not been taught how it is built.</p>
+            </div>
+            <div style="background: white; padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="color: #f7a072;">💡</span> You have an idea you want to try
+                </h4>
+                <p style="color: #666; font-size: 0.95rem;">A club site, a small tool for your course, a portfolio. You
+                    want it to be real, not just a sketch.</p>
+            </div>
+            <div style="background: white; padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="color: #f7a072;">🔍</span> You want to actually understand it
+                </h4>
+                <p style="color: #666; font-size: 0.95rem;">Not copy-paste magic. You want to know what each piece does
+                    so you can change it later on your own.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: var(--primary-color); color: white; padding: 4rem 2rem;">
+    <div class="container"
+        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+        <div style="max-width: 600px;">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">Ready to build the website sitting in your head?</h2>
+            <p style="opacity: 0.9; font-size: 1.1rem;">Start with the planning worksheet — it takes about ten minutes
+                and gives you a clear prompt to work from. No account needed to try it.</p>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="{{ url_for('worksheet') }}" class="btn-primary"
+                style="background-color: white; color: var(--primary-color); padding: 0.8rem 1.5rem; font-size: 1.1rem;">Open
+                the worksheet &rarr;</a>
+            <a href="{{ url_for('signup') }}" class="btn-outline"
+                style="color: white; border-color: rgba(255,255,255,0.5); padding: 0.8rem 1.5rem; font-size: 1.1rem;">Create
+                a free account</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container" style="padding: 4rem 2rem;">
+    <!-- Header -->
+    <div style="margin-bottom: 4rem;">
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background-color: #fcece6; color: var(--primary-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Account settings
+        </div>
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Manage your account</h1>
+        <p style="color: #666; font-size: 1.1rem; max-width: 800px;">Update your details, change your password, and choose how you would like to hear from us.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 4rem; align-items: start;">
+        <!-- Sidebar Navigation -->
+        <div style="position: sticky; top: 2rem;">
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#profile" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; border-left: 3px solid var(--primary-color); background-color: white; color: #333; font-weight: 500; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile details</a></li>
+                <li><a href="#security" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; border-left: 3px solid transparent; color: #666; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Password & security</a></li>
+                <li><a href="#email" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; border-left: 3px solid transparent; color: #666; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email address</a></li>
+                <li><a href="#preferences" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; border-left: 3px solid transparent; color: #666; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg> Preferences</a></li>
+                <li><a href="#account" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; border-left: 3px solid transparent; color: #666; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Account</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Area -->
+        <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px;">
+            
+            <!-- Profile Details Section -->
+            <div id="profile" style="padding: 2.5rem; border-bottom: 1px solid var(--border-color);">
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Profile details</h2>
+                    <p style="color: #666; font-size: 0.95rem;">Keep your name, school and experience level up to date.</p>
+                </div>
+                
+                <form method="POST" action="{{ url_for('settings') }}">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Full name</label>
+                            <input type="text" name="full_name" value="{{ profile.full_name if profile else user.user_metadata.full_name if user and user.user_metadata else 'TONG YONG SHEN' }}" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Avatar Image URL</label>
+                                <span style="font-size: 0.8rem; color: #888;">Optional</span>
+                            </div>
+                            <input type="text" name="avatar_url" value="{{ profile.avatar_url if profile else '' }}" placeholder="https://..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">University</label>
+                            <input type="text" name="university" value="{{ profile.university if profile else '' }}" placeholder="State University" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;" required>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Major</label>
+                                <span style="font-size: 0.8rem; color: #888;">Optional</span>
+                            </div>
+                            <input type="text" name="major" value="{{ profile.major if profile else '' }}" placeholder="Business, Biology, Design..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem; max-width: 50%;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Python experience</label>
+                        <select disabled style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; background-color: #f9f9f9; color: #888;">
+                            <option {% if not profile or profile.python_level == 'Beginner' %}selected{% endif %}>Beginner</option>
+                            <option {% if profile and profile.python_level == 'Intermediate' %}selected{% endif %}>Intermediate</option>
+                            <option {% if profile and profile.python_level == 'Advanced' %}selected{% endif %}>Advanced</option>
+                        </select>
+                        <div style="font-size: 0.8rem; color: #888; margin-top: 0.3rem;">Automatically updated based on tutorial progress.</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Short bio</label>
+                            <span style="font-size: 0.8rem; color: #888;">Required for access</span>
+                        </div>
+                        <textarea name="short_bio" rows="4" placeholder="What are you hoping to build with Flask?" style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; resize: vertical;" required>{{ profile.short_bio if profile else '' }}</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-outline" style="color: var(--primary-color); border-color: #f7a072;">Save changes</button>
+                </form>
+            </div>
+            
+            <!-- Password & Security -->
+            <div id="security" style="padding: 2.5rem; border-bottom: 1px solid var(--border-color);">
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Password & security</h2>
+                    <p style="color: #666; font-size: 0.95rem;">Change the password you use to log in.</p>
+                </div>
+                
+                <form>
+                    <div style="margin-bottom: 1.5rem; max-width: 400px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Current password</label>
+                        <input type="password" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem; max-width: 400px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">New password</label>
+                        <input type="password" placeholder="At least 6 characters" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem; max-width: 400px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Confirm new password</label>
+                        <input type="password" placeholder="Repeat your new password" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                    </div>
+                    
+                    <button type="button" class="btn-outline" style="color: var(--primary-color); border-color: #f7a072;">Update password</button>
+                </form>
+            </div>
+            
+            <!-- Email -->
+            <div id="email" style="padding: 2.5rem; border-bottom: 1px solid var(--border-color);">
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Email address</h2>
+                    <p style="color: #666; font-size: 0.95rem;">Update the email tied to your account.</p>
+                </div>
+                
+                <form>
+                    <div style="margin-bottom: 1.5rem; max-width: 400px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">Current email</label>
+                        <input type="email" value="{{ user.email if user else 'your@university.edu' }}" disabled style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; background-color: #f9f9f9; color: #888;">
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem; max-width: 400px;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem;">New email address</label>
+                        <input type="email" placeholder="new-address@university.edu" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                    </div>
+                    
+                    <button type="button" class="btn-outline" style="color: var(--primary-color); border-color: #f7a072;">Update email</button>
+                </form>
+            </div>
+            
+            <!-- Preferences -->
+            <div id="preferences" style="padding: 2.5rem; border-bottom: 1px solid var(--border-color);">
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Preferences</h2>
+                    <p style="color: #666; font-size: 0.95rem;">Choose what we email you about.</p>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid #eee;">
+                    <div>
+                        <div style="font-weight: 500; margin-bottom: 0.3rem;">Course updates</div>
+                        <div style="color: #666; font-size: 0.9rem;">Occasional notes when we add a new lesson or refresh the slides.</div>
+                    </div>
+                    <div style="width: 44px; height: 24px; background-color: #4ade80; border-radius: 12px; position: relative; cursor: pointer;">
+                        <div style="width: 20px; height: 20px; background-color: white; border-radius: 50%; position: absolute; top: 2px; right: 2px;"></div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid #eee;">
+                    <div>
+                        <div style="font-weight: 500; margin-bottom: 0.3rem;">Lesson reminders</div>
+                        <div style="color: #666; font-size: 0.9rem;">A gentle nudge if you have not opened a lesson for a while.</div>
+                    </div>
+                    <div style="width: 44px; height: 24px; background-color: #ccc; border-radius: 12px; position: relative; cursor: pointer;">
+                        <div style="width: 20px; height: 20px; background-color: white; border-radius: 50%; position: absolute; top: 2px; left: 2px;"></div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; margin-bottom: 1.5rem;">
+                    <div>
+                        <div style="font-weight: 500; margin-bottom: 0.3rem;">Product news</div>
+                        <div style="color: #666; font-size: 0.9rem;">Updates about new tools and features in Mastering Python Flask.</div>
+                    </div>
+                    <div style="width: 44px; height: 24px; background-color: #4ade80; border-radius: 12px; position: relative; cursor: pointer;">
+                        <div style="width: 20px; height: 20px; background-color: white; border-radius: 50%; position: absolute; top: 2px; right: 2px;"></div>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-outline" style="color: var(--primary-color); border-color: #f7a072;">Save preferences</button>
+            </div>
+            
+            <!-- Account -->
+            <div id="account" style="padding: 2.5rem;">
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Sign out</h2>
+                    <p style="color: #666; font-size: 0.95rem;">Log out of this device, or end every active session if you have used a shared or campus computer.</p>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-bottom: 3rem;">
+                    <a href="{{ url_for('logout') }}" class="btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Log out here</a>
+                    <a href="{{ url_for('logout') }}" class="btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg> Sign out of all devices</a>
+                </div>
+                
+                <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; color: #b91c1c; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Danger zone</h3>
+                    <p style="color: #7f1d1d; font-size: 0.95rem; margin-bottom: 1.5rem;">Need to remove your account and all saved data? Contact support and we will take care of it for you. This cannot be undone.</p>
+                    <button class="btn-outline" style="border-color: #f87171; color: #b91c1c; background: white; display: inline-flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Contact support</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

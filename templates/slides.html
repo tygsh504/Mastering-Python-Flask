@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container" style="padding: 4rem 2rem;">
+    <!-- Header -->
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background-color: #fcece6; color: var(--primary-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Slide library
+        </div>
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Read the slides, your way</h1>
+        <p style="color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Pick a deck to read it slide by slide, jump between pages, or download it to keep for later. Handy for revising before an exam or study group session.</p>
+    </div>
+
+    <!-- Viewer Layout -->
+    <div style="margin-bottom: 2rem;">
+        <a href="#" style="color: #666; font-size: 0.9rem; display: flex; align-items: center; gap: 0.2rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg> All slide decks</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
+        <!-- Left: Slide Player Area -->
+        <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
+            
+            <!-- Slide Content -->
+            <div style="padding: 4rem 3rem; min-height: 400px; position: relative;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+                    <span style="background-color: #e5f6fd; color: #0288d1; padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px;">{{ current_slide.module }}</span>
+                    <span style="color: #888; font-size: 0.9rem;">{{ current_index + 1 }} / {{ course_slides|length }}</span>
+                </div>
+                
+                <div style="font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 1rem; font-weight: 600;">{{ current_slide.module }}</div>
+                <h2 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 2rem; color: #333;">{{ current_slide.title }}</h2>
+                
+                <ul style="list-style: none; padding-left: 0;">
+                    {% for bullet in current_slide.content %}
+                    <li style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                        <div style="background: #e5f6fd; border-radius: 50%; padding: 4px; display: flex; margin-top: 4px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0288d1" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <span style="font-size: 1.1rem; color: #444; line-height: 1.5;">{{ bullet }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <!-- Slide Controls -->
+            <div style="padding: 1rem 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: #fafafa;">
+                {% if prev_slide %}
+                <a href="{{ url_for('slides', slide_id=prev_slide.id) }}" style="border: none; background: none; color: #666; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; text-decoration: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg> Previous
+                </a>
+                {% else %}
+                <span style="width: 100px;"></span>
+                {% endif %}
+                
+                <!-- Dots -->
+                <div style="display: flex; gap: 8px;">
+                    {% for slide in course_slides %}
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background-color: {{ 'var(--primary-color)' if loop.index0 == current_index else '#ddd' }};"></div>
+                    {% endfor %}
+                </div>
+                
+                {% if next_slide %}
+                <a href="{{ url_for('slides', slide_id=next_slide.id) }}" class="btn-primary" style="padding: 0.5rem 1.5rem; text-decoration: none; border-radius: 4px;">Next &rarr;</a>
+                {% else %}
+                <span style="width: 100px;"></span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Right: Slide List -->
+        <div>
+            <div style="margin-bottom: 1.5rem; text-align: right;">
+                <button class="btn-outline" style="color: var(--text-light); border-color: #ccc; display: inline-flex; align-items: center; gap: 0.5rem; background: white;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download deck</button>
+            </div>
+            
+            <div style="background-color: white; border: 1px solid var(--border-color); border-radius: 8px;">
+                <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); background-color: #fafafa;">
+                    <h3 style="margin: 0; font-size: 1.1rem;">Slides in this deck</h3>
+                </div>
+                
+                <div style="padding: 0.5rem;">
+                    {% for slide in course_slides %}
+                    {% set is_active = slide.id == current_slide.id %}
+                    <a href="{{ url_for('slides', slide_id=slide.id) }}" style="display: flex; gap: 1rem; padding: 1rem; border-radius: 4px; text-decoration: none; color: {{ 'var(--primary-color)' if is_active else 'inherit' }}; align-items: center; {{ 'background-color: #fcece6; border-left: 3px solid var(--primary-color);' if is_active else '' }}">
+                        <div style="width: 24px; height: 24px; background: {{ 'white' if is_active else '#eee' }}; border-radius: 4px; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: 500; color: {{ 'var(--primary-color)' if is_active else '#666' }};">{{ loop.index }}</div>
+                        <div style="{{ 'font-weight: 600;' if is_active else '' }} font-size: 0.95rem;">{{ slide.title }}</div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

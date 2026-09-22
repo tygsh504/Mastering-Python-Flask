@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container" style="padding: 4rem 2rem;">
+    <!-- Header -->
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Your Worksheet History</h1>
+        <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Access all the prompts you have generated for your previous ideas.</p>
+        <div style="margin-top: 1.5rem;">
+            <a href="{{ url_for('worksheet') }}" class="btn-primary">Start a new worksheet</a>
+        </div>
+    </div>
+
+    <div style="max-width: 900px; margin: 0 auto;">
+        {% if worksheets and worksheets|length > 0 %}
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                {% for sheet in worksheets %}
+                <div style="background-color: var(--bg-dark); color: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                    <div style="padding: 1rem 1.5rem; border-bottom: 1px solid #444; display: flex; justify-content: space-between; align-items: center; background-color: rgba(0,0,0,0.2);">
+                        <div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.2rem;">{{ sheet.purpose[:50] }}{% if sheet.purpose|length > 50 %}...{% endif %}</h3>
+                            <span style="font-size: 0.8rem; color: #888;">Saved on: {{ sheet.created_at[:10] }}</span>
+                        </div>
+                        
+                        <button class="copy-history-btn" data-prompt="{{ sheet.generated_prompt | e }}" style="background: var(--primary-color); border: none; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: background 0.2s;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> 
+                            Copy Prompt
+                        </button>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; font-size: 0.95rem; line-height: 1.6; color: #ddd; white-space: pre-wrap; background-color: #222; max-height: 300px; overflow-y: auto;">{{ sheet.generated_prompt }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 4rem 2rem; background-color: #fafafa; border-radius: 12px; border: 1px dashed #ccc;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">No worksheets saved yet</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">When you complete and save a planning worksheet, it will appear here.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const copyBtns = document.querySelectorAll('.copy-history-btn');
+        copyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const prompt = btn.getAttribute('data-prompt');
+                navigator.clipboard.writeText(prompt).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+                    setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

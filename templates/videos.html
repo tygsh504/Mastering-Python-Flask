@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container" style="padding: 4rem 2rem;">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background-color: #fcece6; color: var(--primary-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> Video lessons
+        </div>
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Pick a lesson and follow along</h1>
+        <p style="color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Every clip is short and to the point. Start at the top for the full journey, or jump straight to the topic you need help with right now.</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem;">
+        <button style="padding: 0.5rem 1rem; border-radius: 20px; border: none; background-color: var(--primary-color); color: white; font-weight: 500;">All</button>
+        {% set modules = [] %}
+        {% for video in course_videos %}
+            {% if video.module not in modules %}
+                {% set _ = modules.append(video.module) %}
+                <button style="padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid #ddd; background-color: transparent; color: #555; font-weight: 500;">{{ video.module }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
+        <!-- Left: Video Player Area -->
+        <div>
+            <!-- Video Player -->
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: black; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        src="{{ current_video.url }}" 
+                        title="{{ current_video.title }}" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; font-size: 0.9rem;">
+                <span style="background-color: #e5f6fd; color: #0288d1; padding: 2px 8px; border-radius: 4px; font-weight: 500;">{{ current_video.module }}</span>
+                <span style="color: #666;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Beginner</span>
+                <span style="color: #666; margin-left: auto;">{{ current_video.duration }}</span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                <h2 style="font-size: 2rem; margin: 0;">{{ current_video.title }}</h2>
+                {% if current_video.id in completed_video_ids %}
+                <button disabled class="btn-outline" style="color: #166534; border-color: #166534; display: inline-flex; align-items: center; gap: 0.5rem; background-color: #dcfce7; cursor: default;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Completed
+                </button>
+                {% else %}
+                <button id="completeVideoBtn" class="btn-outline" style="color: var(--primary-color); border-color: #f7a072; display: inline-flex; align-items: center; gap: 0.5rem;" onclick="markVideoCompleted('{{ current_video.id }}')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Mark as Completed
+                </button>
+                {% endif %}
+            </div>
+            <p style="color: #555; line-height: 1.6; font-size: 1.05rem;">
+                {{ current_video.description }}
+            </p>
+            <div id="completionMsg" style="display: none; padding: 1rem; margin-top: 1rem; background-color: #dcfce7; color: #166534; border-radius: 8px; font-weight: 500;"></div>
+            
+            <script>
+            function markVideoCompleted(videoId) {
+                const btn = document.getElementById('completeVideoBtn');
+                btn.innerHTML = 'Saving...';
+                btn.disabled = true;
+                
+                fetch('{{ url_for("complete_video") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ video_id: videoId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const msgDiv = document.getElementById('completionMsg');
+                    if (data.success) {
+                        msgDiv.innerHTML = `Video completed! Reloading next video...`;
+                        msgDiv.style.display = 'block';
+                        setTimeout(() => {
+                            window.location.href = '{{ url_for("videos") }}';
+                        }, 1000);
+                    } else {
+                        msgDiv.innerHTML = 'Error: ' + data.error;
+                        msgDiv.style.backgroundColor = '#fef2f2';
+                        msgDiv.style.color = '#b91c1c';
+                        msgDiv.style.display = 'block';
+                        btn.innerHTML = 'Try Again';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    btn.innerHTML = 'Try Again';
+                    btn.disabled = false;
+                });
+            }
+            </script>
+        </div>
+
+        <!-- Right: Lesson List -->
+        <div style="background-color: white; border: 1px solid var(--border-color); border-radius: 8px; max-height: 800px; overflow-y: auto;">
+            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background-color: #fafafa; position: sticky; top: 0; z-index: 1;">
+                <h3 style="margin: 0; font-size: 1.1rem;">All lessons</h3>
+                <span style="font-size: 0.85rem; color: #888;">{{ course_videos|length }} clips &darr;</span>
+            </div>
+            
+            <div style="padding: 1rem;">
+                {% set current_module = namespace(name='') %}
+                {% for video in course_videos %}
+                    {% if video.module != current_module.name %}
+                        {% if not loop.first %}
+                            </div>
+                        {% endif %}
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: #555;">
+                                    <span style="background-color: #e5f6fd; color: #0288d1; padding: 2px 6px; border-radius: 4px;">{{ video.module }}</span>
+                                </div>
+                            </div>
+                        {% set current_module.name = video.module %}
+                    {% endif %}
+                    
+                    {% set is_unlocked = video.id in unlocked_video_ids %}
+                    {% set is_completed = video.id in completed_video_ids %}
+                    {% set is_active = current_video.id == video.id %}
+                    
+                    <a href="{{ url_for('videos', video_id=video.id) if is_unlocked else '#' }}" 
+                       style="display: flex; gap: 1rem; padding: 1rem; border-radius: 8px; 
+                              background-color: {{ '#fcece6' if is_active else 'transparent' }}; 
+                              border: 1px solid {{ 'var(--primary-color)' if is_active else 'transparent' }}; 
+                              text-decoration: none; color: inherit; margin-bottom: 0.5rem; 
+                              opacity: {{ '1' if is_unlocked else '0.5' }};
+                              cursor: {{ 'pointer' if is_unlocked else 'not-allowed' }};">
+                        
+                        <div style="width: 100px; height: 60px; background-color: #ddd; border-radius: 4px; overflow: hidden; position: relative;">
+                            <img src="{{ video.thumbnail }}" style="width: 100%; height: 100%; object-fit: cover;" alt="Thumbnail">
+                            <div style="position: absolute; bottom: 4px; right: 4px; background-color: rgba(0,0,0,0.7); color: white; font-size: 0.7rem; padding: 2px 4px; border-radius: 2px;">{{ video.duration }}</div>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.2rem; display: flex; justify-content: space-between;">
+                                <span>{{ "%02d"|format(loop.index) }} · {{ video.module }}</span>
+                                {% if is_completed %}
+                                    <span style="color: #166534;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></span>
+                                {% elif not is_unlocked %}
+                                    <span style="color: #888;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+                                {% endif %}
+                            </div>
+                            <div style="font-weight: {{ '600' if is_active else '500' }}; font-size: 0.95rem;">{{ video.title }}</div>
+                        </div>
+                    </a>
+                    
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
